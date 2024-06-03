@@ -116,7 +116,7 @@ BEGIN
     RETURN total;
 END
 ```
-###Триггер
+### Триггер
 Триггер автоматически обновляет общую сумму заказа после вставки новой записи в order_detail.
 ```sql
 DROP TRIGGER IF EXISTS UpdateOrderTotalAmount;
