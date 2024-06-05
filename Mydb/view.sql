@@ -1,3 +1,4 @@
+-- представление для отображения деталей заказов --
 CREATE
     ALGORITHM = UNDEFINED
     DEFINER = `root`@`localhost`
