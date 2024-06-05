@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.35, for Win64 (x86_64)
 --
--- Host: localhost    Database: building_store
+-- Host: localhost    Database: buildingstore
 -- ------------------------------------------------------
 -- Server version	8.0.35
 
@@ -42,7 +42,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (5,2,3,2,'2024-06-03 20:14:09');
+INSERT INTO `cart` VALUES (1,1,1,5,'2024-06-05 14:39:11'),(2,1,3,1,'2024-06-05 14:39:11'),(3,1,6,2,'2024-06-05 14:39:11'),(4,5,7,10,'2024-06-05 14:39:11'),(5,5,8,1,'2024-06-05 14:39:11');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +57,7 @@ CREATE TABLE `category` (
   `category_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'инструменты');
+INSERT INTO `category` VALUES (1,'Строительные материалы'),(2,'Инструменты'),(3,'Краски и покрытия'),(4,'Электрика'),(5,'Сантехника');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `order` (
   PRIMARY KEY (`order_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,2,300.00,'processing','2024-06-02 20:38:39'),(2,2,15300.00,'processing','2024-06-02 20:39:13'),(3,2,300.00,'processing','2024-06-02 20:46:37'),(4,2,180000.00,'processing','2024-06-02 20:48:36'),(5,2,75000.00,'processing','2024-06-03 19:43:16'),(6,2,75000.00,'processing','2024-06-03 19:46:57'),(7,2,75000.00,'processing','2024-06-03 19:47:49'),(8,2,75000.00,'processing','2024-06-03 19:52:30'),(9,2,0.00,'processing','2024-06-03 19:55:28'),(10,2,105000.00,'processing','2024-06-03 19:57:04'),(11,2,105000.00,'processing','2024-06-03 20:09:50'),(12,2,105300.00,'processing','2024-06-03 20:10:15'),(13,2,30000.00,'processing','2024-06-03 20:14:39');
+INSERT INTO `order` VALUES (1,1,2600.00,'paid','2024-06-05 14:39:11'),(2,1,3600.00,'processing','2024-06-05 14:39:11'),(3,5,3700.00,'unpaid','2024-06-05 14:39:11'),(4,5,3550.00,'paid','2024-06-05 14:39:11'),(5,5,2550.00,'processing','2024-06-05 14:39:11');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `order_detail` (
   KEY `product_id` (`product_id`),
   CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`),
   CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,55 +126,9 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-INSERT INTO `order_detail` VALUES (1,2,1,1,15000.00),(2,4,1,12,15000.00),(6,8,2,5,15000.00),(9,12,2,7,15000.00),(11,1,2,3,100.00),(12,12,2,3,100.00),(14,3,2,3,100.00),(15,2,2,3,100.00);
+INSERT INTO `order_detail` VALUES (1,1,1,5,500.00),(2,1,3,1,3000.00),(3,1,6,2,1500.00),(4,2,7,10,350.00),(5,3,8,1,250.00),(6,4,8,1,250.00),(7,4,7,10,350.00),(8,5,8,1,250.00);
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `UpdateOrderTotalAmount` AFTER INSERT ON `order_detail` FOR EACH ROW BEGIN
-    DECLARE new_total DECIMAL(10, 2);
-    
-    -- Вычисляем новую общую сумму заказа
-    SELECT SUM(price * quantity) INTO new_total
-    FROM order_detail
-    WHERE order_id = NEW.order_id;
-    
-    -- Обновляем поле total_amount в таблице order
-    UPDATE `order`
-    SET total_amount = new_total
-    WHERE order_id = NEW.order_id;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Temporary view structure for view `orderdetailsview`
---
-
-DROP TABLE IF EXISTS `orderdetailsview`;
-/*!50001 DROP VIEW IF EXISTS `orderdetailsview`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `orderdetailsview` AS SELECT 
- 1 AS `order_id`,
- 1 AS `user_id`,
- 1 AS `total_amount`,
- 1 AS `order_status`,
- 1 AS `order_date`,
- 1 AS `product_id`,
- 1 AS `quantity`,
- 1 AS `price`*/;
-SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `product`
@@ -188,15 +142,15 @@ CREATE TABLE `product` (
   `name` varchar(255) DEFAULT NULL,
   `description` text,
   `price` decimal(10,2) DEFAULT NULL,
+  `stock` int DEFAULT '0',
   `category_id` int DEFAULT NULL,
   `seller_id` int DEFAULT NULL,
-  `stock` int DEFAULT '0',
   PRIMARY KEY (`product_id`),
   KEY `category_id` (`category_id`),
   KEY `seller_id` (`seller_id`),
   CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`),
   CONSTRAINT `product_ibfk_2` FOREIGN KEY (`seller_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,7 +159,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Гвоздадер','Выдирает гвозди прямо у всех на глазах, как ему не стыдно!!',15000.00,1,3,0),(2,'Гвоздадер','Выдирает гвозди прямо у всех на глазах, как ему не стыдно!!',15000.00,1,3,3),(3,'Гвоздадер','Выдирает гвозди прямо у всех на глазах, как ему не стыдно!!',15000.00,1,3,10);
+INSERT INTO `product` VALUES (1,'Цемент','Цемент для строительных работ',500.00,100,1,2),(2,'Кирпич','Красный кирпич для кладки',20.00,1000,1,2),(3,'Дрель','Электрическая дрель',3000.00,50,2,2),(4,'Краска белая','Белая акриловая краска',600.00,200,3,2),(5,'Провода','Электрические провода',100.00,500,4,2),(6,'Смеситель','Смеситель для ванной',1500.00,100,5,2),(7,'Гипсокартон','Листы гипсокартона',350.00,300,1,4),(8,'Молоток','Строительный молоток',250.00,150,2,4),(9,'Клей','Клей для обоев',200.00,400,3,4),(10,'Розетка','Электрическая розетка',150.00,200,4,4);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +176,7 @@ CREATE TABLE `user` (
   `password` varchar(100) DEFAULT NULL,
   `role` enum('customer','seller','admin') DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,27 +185,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','admin','admin'),(2,'Georgy','222223','customer'),(3,'Mishail','12212','seller');
+INSERT INTO `user` VALUES (1,'ivan_ivanov','password1','customer'),(2,'anna_smirnova','password2','seller'),(3,'admin','password3','admin'),(4,'petr_petrov','password4','seller'),(5,'alexey_alexeev','password5','customer');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Final view structure for view `orderdetailsview`
---
-
-/*!50001 DROP VIEW IF EXISTS `orderdetailsview`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `orderdetailsview` AS select `o`.`order_id` AS `order_id`,`o`.`user_id` AS `user_id`,`o`.`total_amount` AS `total_amount`,`o`.`order_status` AS `order_status`,`o`.`order_date` AS `order_date`,`od`.`product_id` AS `product_id`,`od`.`quantity` AS `quantity`,`od`.`price` AS `price` from (`order` `o` join `order_detail` `od` on((`o`.`order_id` = `od`.`order_id`))) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -262,4 +198,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-05 16:52:50
+-- Dump completed on 2024-06-05 17:40:48
