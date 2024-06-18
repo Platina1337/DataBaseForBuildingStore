@@ -98,3 +98,23 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- Хранимая процедура для добавления нового пользователя: --
+DELIMITER //
+
+CREATE PROCEDURE AddUser (
+    IN p_username VARCHAR(255),
+    IN p_password VARCHAR(255),
+    IN p_role ENUM('customer', 'seller', 'admin')
+)
+BEGIN
+    DECLARE hashed_password VARCHAR(255);
+    -- Хеширование пароля
+    SET hashed_password = SHA2(p_password, 256);
+
+    -- Добавление нового пользователя в таблицу
+    INSERT INTO user (username, password, role) 
+    VALUES (p_username, hashed_password, p_role);
+END //
+
+DELIMITER ;
